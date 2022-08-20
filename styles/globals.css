@@ -1,0 +1,103 @@
+/* Global Styles */
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+
+  scroll-behavior: smooth;
+}
+
+body {
+  box-sizing: border-box;
+  font-family: "VT323", monospace !important;
+
+  min-width: 375px;
+
+  height: 100%;
+
+  overflow-x: hidden;
+
+  transition: all 0.5s;
+
+  color: #fff;
+}
+
+.Toastify__toast-container {
+  font-family: "VT323", monospace !important;
+}
+
+/* width */
+body::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+body::-webkit-scrollbar-track {
+  background: #454a6a;
+}
+
+/* Handle */
+body::-webkit-scrollbar-thumb {
+  background: #fff;
+  border-radius: 12px;
+}
+
+.disable-scrolling {
+  height: 100%;
+  overflow: hidden;
+  max-height: 100vh;
+}
+
+/* Font sizes */
+@media only screen and (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+}
+@media only screen and (max-width: 479px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+/* Web3modal */
+.web3modal-modal-lightbox {
+  z-index: 10000 !important;
+
+  font-family: "VT323", monospace !important;
+}
+
+/* Animations */
+
+@keyframes rainbow_animation {
+  0%,
+  100% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 100% 0;
+  }
+}
+
+#__next {
+  overflow-x: hidden;
+
+  position: relative;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0 50%;
+  }
+  to {
+    background-position: 400% 50%;
+  }
+}
