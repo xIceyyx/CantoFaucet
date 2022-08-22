@@ -25,7 +25,7 @@ const Home = () => {
         className="background-image"
       />
 
-      <p className="header">canto evm faucet</p>
+      <p className="header">canto EVM faucet</p>
 
       {/* <p className="support">
         Do not connect your wallet or use web3 for this faucet
