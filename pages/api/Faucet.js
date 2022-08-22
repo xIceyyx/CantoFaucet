@@ -10,10 +10,7 @@ export default function handler(req, res) {
     "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
   );
 
-  const wallet = new ethers.Wallet(
-    "pk",
-    provider
-  );
+  const wallet = new ethers.Wallet("private key", provider);
 
   // Receiver Address which receives Ether
   let receiverAddress = req.body.address;

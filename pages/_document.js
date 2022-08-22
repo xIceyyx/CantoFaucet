@@ -13,12 +13,6 @@ export default class MyDocument extends Document {
           />
           <meta name="theme-color" content="#000000" />
           {/* Fonts and icons */}
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-          <link
-            href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
-            rel="stylesheet"
-          />
         </Head>
         <body>
           <Main />

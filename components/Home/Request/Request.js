@@ -24,23 +24,24 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 const Request = () => {
   const [inputValue, setInputValue] = useState();
-  const [valid, setValid] = useState();
+  const [status, setStatus] = useState();
 
   const capthcaRef = useRef();
 
   const claim = async () => {
-    if (!valid) {
-      toast.error("Complete catpha");
+    console.log(capthcaRef);
+
+    if (!status) {
+      toast.error("Complete captcha");
       return;
     }
+
     console.log(inputValue);
 
     try {
       toast.success("Claim submitted");
 
       capthcaRef.current.reset();
-
-      setValid(false);
 
       await fetch("/api/Faucet", {
         headers: {
@@ -52,60 +53,49 @@ const Request = () => {
           address: inputValue.toString().toLowerCase(),
         }),
       });
+
+      setStatus(false);
     } catch (error) {
+      console.log(error);
       capthcaRef.current.reset();
       toast.error("Failed to claim");
-      setValid(false);
+      setStatus(false);
     }
 
     capthcaRef.current.reset();
+
+    setStatus(false);
   };
 
   const onChange = async (value) => {
-    setValid(value);
+    console.log("completed");
+    setStatus(true);
   };
 
   return (
     <Wrapper>
-      <div className="captha">
-        <ReCAPTCHA
-          sitekey="6LcDR5MhAAAAADDA_Bw3ezcRrfZpfk0dBW9jRqE6"
-          onChange={onChange}
-          ref={capthcaRef}
-        />
-      </div>
-
-      <Paper
-        sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: 400 }}
-        className="search"
-      >
-        <InputBase
-          sx={{ ml: 1, flex: 1 }}
-          placeholder="ENTER EVM CANTO ADDRESS"
-          inputProps={{ "aria-label": "search google maps" }}
-          value={inputValue}
+      <div className="form">
+        <input
+          type="text"
+          className="address"
+          placeHolder={"enter canto EVM address"}
           onChange={(e) => {
             setInputValue(e.target.value);
           }}
-          className="input-text"
         />
-        <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
-          <SearchIcon onClick={claim} />
-        </IconButton>
-        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-      </Paper>
 
-      <p className="support">
-        do not connect your wallet or use web3 for this faucet
-      </p>
+        <div className="captha">
+          <ReCAPTCHA
+            sitekey="6LcDR5MhAAAAADDA_Bw3ezcRrfZpfk0dBW9jRqE6"
+            onChange={onChange}
+            ref={capthcaRef}
+          />
+        </div>
 
-      <p className="support">
-        support canto faucet: 0xF39eEe4F21359e78A30D992e0b2D7fEAAe5c97Ff
-      </p>
-
-      <p className="support punks">
-        first punks on canto minting now: cantopunks.netlify.app
-      </p>
+        <button className="submit" onClick={claim}>
+          request
+        </button>
+      </div>
     </Wrapper>
   );
 };
@@ -118,6 +108,63 @@ const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
 
+  width: 100%;
+
+  .form {
+    //
+    width: 425px;
+    @media only screen and (max-width: 450px) {
+      width: 100%;
+    }
+    //
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+
+    font-family: "modeSeven", monospace !important;
+
+    input {
+      width: 100%;
+      height: 35px;
+
+      padding: 10px;
+
+      font-family: "modeSeven", monospace !important;
+
+      font-weight: 800;
+      font-size: 20px;
+      background-color: black;
+      color: #06fc99;
+      padding: 0.2rem 2rem;
+      border: 1px solid #06fc99;
+
+      text-align: center;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .submit {
+      width: 100%;
+      height: 35px;
+
+      cursor: pointer;
+
+      font-family: "modeSeven", monospace !important;
+
+      font-weight: 800;
+      font-size: 20px;
+      background-color: black;
+      color: #06fc99;
+      padding: 0.2rem 2rem;
+      border: 1px solid #06fc99;
+    }
+  }
+
   .support {
     text-align: center;
 
@@ -126,46 +173,9 @@ const Wrapper = styled.div`
     font-size: 1rem;
   }
 
-  .punks {
-    font-size: 1.5rem;
-  }
-
   .captha {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    margin-top: 30px;
-  }
-
-  .search {
-    margin-top: 30px;
-  }
-
-  .input-text {
-    font-family: "VT323", monospace !important;
-  }
-  .items {
-    padding: 10px 10px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  .nft-wrap {
-    text-align: center;
-
-    .item {
-      width: 100px;
-      height: 100px;
-      border-radius: 12px;
-      border: 2px solid transparent;
-      cursor: pointer;
-    }
-    .selected {
-      border: 2px solid #fff;
-      box-shadow: 0px 0px 25px 1px #fff;
-    }
   }
 `;

@@ -30,46 +30,7 @@ const Nav = () => {
 
   return (
     <Wrapper mode={mode}>
-      <div className="mode">
-        <div className="icon-button">
-          {mode === "light" ? (
-            <Button className="icon" onClick={handleMode}>
-              <p className="text">Light</p>
-              <LightModeIcon className="sun" />
-            </Button>
-          ) : (
-            <Button className="icon" onClick={handleMode}>
-              <p className="text">Dark</p>
-              <DarkModeIcon className="moon" />
-            </Button>
-          )}
-        </div>
-      </div>
 
-      {/* <a
-        href="https://twitter.com/AptoFlip"
-        className="twitter"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <Button className="socials">
-          <TwitterIcon className="twitter-icon" />
-        </Button>
-      </a> */}
-
-      <ToastContainer
-        style={{ width: "400px" }}
-        toastClassName="font-bold  border-[1px] border-[#23263D] rounded-[10px] w-2xl"
-        position="top-center"
-        rtl={false}
-        toastStyle={{
-          backgroundColor: mode === "light" ? "#000" : "#fff",
-          color: mode === "light" ? "#fff" : "#000",
-          fontFamily: "VT323",
-          fontSize: "1.3rem",
-        }}
-        className="toastContainer"
-      />
     </Wrapper>
   );
 };

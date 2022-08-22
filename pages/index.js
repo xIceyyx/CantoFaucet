@@ -11,9 +11,12 @@ const index = () => {
   return (
     <Fragment>
       <Head>
-        <title>CANTO EVM FAUCET</title>
+        <title>Canto EVM Faucet</title>
 
-        {/* <link rel="shortcut icon" href="./images/aptoflip.png" /> */}
+        <link
+          rel="shortcut icon"
+          href="https://convert.canto.io/assets/favicon.b337524c.svg"
+        />
       </Head>
       <Home />
     </Fragment>

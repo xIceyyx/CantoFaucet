@@ -6,12 +6,11 @@ import store from "../store/index";
 //
 
 // Components
-import Nav from "../components/Global/Nav"
+import Nav from "../components/Global/Nav";
 
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      <Nav/>
       <Component {...pageProps} />
     </Provider>
   );
